@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean & Care Class | SMAN 1 Batujaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b4332;
+            --secondary: #b7e4c7;
+            --accent: #ffb703;
+            --text-dark: #1b1b1b;
+            --text-light: #f8f9fa;
+            --bg-soft: #fafdfb;
+            --danger: #e63946; /* Warna merah kustom baru */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section (Rasio Tetap 9:16, Tidak Terpotong & Tidak Nge-zoom) */
+        header {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 9 / 16;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('1001630436.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Music Button */
+        #music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        #music-btn:hover { transform: scale(1.1); }
+
+        /* Content Sections */
+        section {
+            padding: 100px 10%;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .section-tag {
+            color: var(--primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        /* Teks Kebiasaan Berwarna Merah */
+        .highlight-red {
+            color: var(--danger);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        /* Cards Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.03);
+            transition: 0.4s;
+        }
+
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Dark Monitoring Section */
+        .monitoring-sec {
+            background: var(--primary);
+            color: var(--text-light);
+            border-radius: 50px;
+            padding: 80px 8%;
+            margin: 50px 2%;
+        }
+
+        .monitoring-sec h2 { color: var(--accent); }
+
+        .highlight-box {
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 30px 0;
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 0 20px 20px 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px;
+            text-align: center;
+            background: #f1f1f1;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+    </style>
+</head>
+<body>
+
+    <audio id="myAudio" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-btn" onclick="toggleMusic()">🎵</div>
+
+    <header>
+        <span class="hero-subtitle">Program Kerja Duta Lingkungan</span>
+        <h1>Clean & Care Class</h1>
+        <p style="font-weight: 300; font-size: 1.2rem;">SMAN 1 Batujaya • Angkatan 2026</p>
+    </header>
+
+    <section id="program" class="container">
+        <span class="section-tag">About The Program</span>
+        <h2 class="section-title">Nggak cuma sekadar bersih, tapi soal <span class="highlight-red">kebiasaan.</span></h2>
+        <p style="font-size: 1.2rem; color: #555; max-width: 800px;">
+            Clean & Care Class adalah wadah buat kita semua ngebangun budaya bersih yang asik dan berkelanjutan. Kita pengen setiap sudut kelas di SMAN 1 Batujaya jadi tempat belajar yang paling nyaman buat kita semua.
+        </p>
+    </section>
+
+    <section style="background: #f0f7f4;">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Visi Kita Bersama</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Disiplin Kolektif</h3>
+                    <p>Bukan cuma satu orang, tapi satu kelas punya rasa memiliki yang sama buat jaga kenyamanan.</p>
+                </div>
+                <div class="card">
+                    <h3>Healthy Environment</h3>
+                    <p>Kelas bersih = pikiran jernih. Belajar jadi makin fokus dan bebas dari kuman penyakit.</p>
+                </div>
+                <div class="card">
+                    <h3>Kebiasaan Baru</h3>
+                    <p>Target kita simpel: pas lulus nanti, budaya hidup bersih ini udah nempel di karakter kita.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="monitoring-sec container">
+        <span class="section-tag" style="color: var(--secondary)">The Mechanics</span>
+        <h2>Gimana Cara Mainnya?</h2>
+        <div class="highlight-box">
+            <p style="font-size: 1.3rem; font-weight: 600;">"Monitoring Setiap Hari, Validasi Berkala."</p>
+        </div>
+        <p>Mekanisme kita buat se-efektif mungkin biar tetep <i>fair</i> tapi nggak ngebani:</p>
+        <div class="grid" style="margin-top: 40px;">
+            <div>
+                <h4 style="color: var(--accent); margin-bottom: 10px;">📸 Dokumentasi Harian</h4>
+                <p>KM/Tim kebersihan kelas wajib kirim foto kondisi kelas ke Link Drive yang udah disiapin. Batas waktu jam 5!</p>
+            </div>
+            <div>
+                <h4 style="color: var(--accent); margin-bottom: 10px;">🕵️ Sidak Tim Duta</h4>
+                <p>Tim kita bakal turun langsung 2x seminggu secara acak buat validasi laporan kalian. Biar penilaian tetep transparan.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="container">
+        <h2 class="section-title">The Grand Rewards 🏆</h2>
+        <p style="margin-bottom: 40px;">Nilai kalian bakal direkap tiap minggu di <strong>Clean Score Board</strong>, dan dijumlahin di akhir bulan buat dapetin:</p>
+        <div class="grid">
+            <div class="card" style="border: 2px solid var(--primary);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="margin-bottom: 0;">Reward Spesial</h3>
+                    <span style="font-size: 2rem;">🎁</span>
+                </div>
+                <p>Ada hadiah fisik spesial buat kelas dengan konsistensi tertinggi. Sesuatu yang bakal bikin warga kelas makin happy!</p>
+            </div>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="margin-bottom: 0;">Alat Kebersihan Tambahan</h3>
+                    <span style="font-size: 2rem;">🧹</span>
+                </div>
+                <p>Alat kebersihan tambahan seperti sapu, pel, dan perlengkapan lainnya agar kelas kalian tetap kinclong dan estetik!</p>
+            </div>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="margin-bottom: 0;">Public Spotlight</h3>
+                    <span style="font-size: 2rem;">📢</span>
+                </div>
+                <p>Kelas kalian bakal dipublish di media sekolah sebagai inspirasi buat kelas lainnya.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #fff5f5;">
+        <div class="container">
+            <span class="section-tag" style="color: var(--danger);">The Consequences</span>
+            <h2 class="section-title">Konsekuensi Akhir Bulan 📋</h2>
+            <p style="margin-bottom: 40px;">Bukan untuk menghukum, melainkan sebagai wujud tanggung jawab bersama. Bagi kelas yang akumulasi poinnya berada di posisi terbawah di akhir bulan, akan diarahkan untuk mengikuti agenda berikut:</p>
+            <div class="grid">
+                <div class="card" style="border: 1px solid rgba(230, 57, 70, 0.2);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 style="margin-bottom: 0; color: var(--danger);">Piket Kerja Bakti</h3>
+                        <span style="font-size: 2rem;">🗑️</span>
+                    </div>
+                    <p>Bersama-sama merapikan dan menjaga kebersihan area lingkungan sekolah yang jarang tersentuh (seperti koridor belakang atau sekitar gudang) dengan didampingi oleh Tim Duta.</p>
+                </div>
+                <div class="card" style="border: 1px solid rgba(230, 57, 70, 0.2);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 style="margin-bottom: 0; color: var(--danger);">Edukasi Lingkungan</h3>
+                        <span style="font-size: 2rem;">🎨</span>
+                    </div>
+                    <p>Membuat satu karya poster edukasi bertema kebersihan dan kepedulian lingkungan kreatif untuk dipajang di mading sekolah agar bisa memotivasi teman-teman yang lain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 SMAN 1 Batujaya • Dibuat oleh Wakil 1 Duta Sekolah & Tim Duta Lingkungan</p>
+    </footer>
+
+    <script>
+        function toggleMusic() {
+            var audio = document.getElementById("myAudio");
+            var btn = document.getElementById("music-btn");
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "⏸️";
+            } else {
+                audio.pause();
+                btn.innerHTML = "🎵";
+            }
+        }
+
+        // Animasi Fade-In Otomatis Saat Di-scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section, .card, .monitoring-sec').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transition = "1s ease-out";
+            el.style.transform = "translateY(30px)";
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('section, .card, .monitoring-sec').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.style.opacity = "1";
+                    el.style.transform = "translateY(0)";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
