@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean & Care Class | SMAN 1 Batujaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b4332;
+            --secondary: #b7e4c7;
+            --accent: #ffb703;
+            --text-dark: #1b1b1b;
+            --text-light: #f8f9fa;
+            --bg-soft: #fafdfb;
+            --danger: #e63946; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        header {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 9 / 16;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('1001630436.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 10px; }
+        .hero-subtitle { font-size: clamp(1rem, 3vw, 1.3rem); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 30px; opacity: 0.9; }
+
+        #music-btn {
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background: var(--primary); color: white; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.2); font-size: 1.5rem; transition: 0.3s;
+        }
+
+        section { padding: 100px 10%; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-tag { color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; font-size: 0.9rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 40px; }
+        .highlight-red { color: var(--danger); font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.03); transition: 0.4s; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary); }
+
+        .monitoring-sec { background: var(--primary); color: var(--text-light); border-radius: 50px; padding: 80px 8%; margin: 50px 2%; }
+        .monitoring-sec h2 { color: var(--accent); }
+        .highlight-box { border-left: 4px solid var(--accent); padding: 25px; margin: 30px 0; background: rgba(255,255,255,0.05); border-radius: 0 20px 20px 0; }
+        .countdown-container { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 20px; margin-top: 25px; text-align: center; }
+        .countdown-timer { font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 800; color: var(--accent); font-family: monospace; }
+
+        .leaderboard-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 20px; overflow: hidden; }
+        .leaderboard-table th, .leaderboard-table td { padding: 18px 25px; text-align: left; }
+        .leaderboard-table th { background-color: var(--primary); color: white; text-transform: uppercase; font-size: 0.85rem; }
+        .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; font-weight: 800; }
+        .rank-1 { background: #fff3cd; color: #856404; }
+        .rank-2 { background: #e2e3e5; color: #383d41; }
+        .rank-3 { background: #f8d7da; color: #721c24; }
+
+        .spotlight-wrapper { background: white; padding: 30px; border-radius: 32px; box-shadow: 0 20px 50px rgba(0,0,0,0.04); text-align: center; max-width: 850px; margin: 0 auto; border: 2px dashed var(--secondary); }
+        .spotlight-frame { width: 100%; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; background: #eef5f1; margin-bottom: 20px; }
+        .spotlight-img { width: 100%; height: 100%; object-fit: cover; }
+
+        footer { padding: 60px; text-align: center; background: #f1f1f1; color: #666; }
+    </style>
+</head>
+<body>
+
+    <audio id="myAudio" loop><source src="musik.mp3" type="audio/mpeg"></audio>
+    <div id="music-btn" onclick="toggleMusic()">🎵</div>
+
+    <header>
+        <span class="hero-subtitle">Program Kerja Duta Lingkungan</span>
+        <h1>Clean & Care Class</h1>
+        <p style="font-weight: 300; font-size: 1.2rem;">SMAN 1 Batujaya • Angkatan 2026</p>
+    </header>
+
+    <section id="program" class="container">
+        <span class="section-tag">About The Program</span>
+        <h2 class="section-title">Nggak cuma sekadar bersih, tapi soal <span class="highlight-red">kebiasaan.</span></h2>
+        <p>Clean & Care Class adalah wadah buat kita semua ngebangun budaya bersih yang asik dan berkelanjutan.</p>
+    </section>
+
+    <div class="monitoring-sec container">
+        <span class="section-tag" style="color: var(--secondary)">The Mechanics</span>
+        <h2>Gimana Cara Mainnya?</h2>
+        <div class="highlight-box"><p style="font-size: 1.3rem; font-weight: 600;">"Monitoring Setiap Hari, Validasi Berkala."</p></div>
+        <div class="grid" style="margin-top: 40px;">
+            <div><h4 style="color: var(--accent);">📸 Dokumentasi Harian</h4><p>Wajib kirim foto sebelum jam 5 sore!</p></div>
+            <div><h4 style="color: var(--accent);">🕵️ Sidak Tim Duta</h4><p>Validasi acak 2x seminggu demi transparansi.</p></div>
+        </div>
+        <div class="countdown-container">
+            <p>⏳ Sisa Waktu Upload Dokumentasi Hari Ini</p>
+            <div id="daily-countdown" class="countdown-timer">00:00:00</div>
+        </div>
+    </div>
+
+    <section class="container">
+        <h2 class="section-title">Clean Score Board 📊</h2>
+        <table class="leaderboard-table">
+            <thead><tr><th>Peringkat</th><th>Kelas</th><th>Total Skor</th></tr></thead>
+            <tbody>
+                <tr><td><span class="rank-badge rank-1">1</span></td><td><strong>X.12</strong></td><td>150</td></tr>
+                <tr><td><span class="rank-badge rank-2">2</span></td><td><strong>XI.A1</strong></td><td>150</td></tr>
+                <tr><td><span class="rank-badge rank-3">3</span></td><td><strong>X.1</strong></td><td>120</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section style="padding-top: 20px;">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Weekly Spotlight 👑</h2>
+            <div class="spotlight-wrapper">
+                <div class="spotlight-frame"><img src="foto.jpg" class="spotlight-img"></div>
+                <h3 style="color: var(--primary);">Apresiasi Kelas Terbersih</h3>
+                <p style="margin-bottom: 25px;">Selamat kepada kelas pemenang minggu ini! 🙌🏻✨</p>
+                <div style="border-top: 1px solid #eee; padding-top: 20px;">
+                    <p style="font-size: 0.8rem; text-transform: uppercase; color: #888; font-weight: 700; margin-bottom: 15px;">✨ Setiap sudut kelas terpilih</p>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                        <div style="aspect-ratio: 1/1; background: #eef5f1; border-radius: 12px; overflow: hidden;"><img src="foto1.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div style="aspect-ratio: 1/1; background: #eef5f1; border-radius: 12px; overflow: hidden;"><img src="foto2.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div style="aspect-ratio: 1/1; background: #eef5f1; border-radius: 12px; overflow: hidden;"><img src="foto3.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">The Consequences 📋</h2>
+        <div class="grid">
+            <div class="card" style="border: 1px solid rgba(230, 57, 70, 0.2);">
+                <h3>Piket Kerja Bakti 🗑️</h3>
+                <p>Merapikan area sekolah yang jarang tersentuh dengan pendampingan Tim Duta.</p>
+            </div>
+            <div class="card" style="border: 1px solid rgba(230, 57, 70, 0.2);">
+                <h3>Edukasi Lingkungan 🎨</h3>
+                <p>Membuat karya poster edukasi kreatif untuk dipajang di mading sekolah.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>© 2026 SMAN 1 Batujaya • Dibuat oleh Tim Duta Lingkungan</p></footer>
+
+    <script>
+        function toggleMusic() {
+            var audio = document.getElementById("myAudio");
+            var btn = document.getElementById("music-btn");
+            if (audio.paused) { audio.play(); btn.innerHTML = "⏸️"; } 
+            else { audio.pause(); btn.innerHTML = "🎵"; }
+        }
+
+        function updateCountdown() {
+            const now = new Date(); const target = new Date(); target.setHours(17, 0, 0, 0);
+            let diff = target - now;
+            if (diff < 0) target.setDate(target.getDate() + 1), diff = target - now;
+            const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+            document.getElementById("daily-countdown").innerHTML = `${h<10?'0'+h:h}:${m<10?'0'+m:m}:${s<10?'0'+s:s}`;
+        }
+        setInterval(updateCountdown, 1000); updateCountdown();
+    </script>
+</body>
+</html>
