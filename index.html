@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1b4332">
+<title>Clean & Care Class | SMAN 1 Batujaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#d8f3dc;--baby:#b7e4c7;--mint:#95d5b2;--yellow:#ffb703;--lav:#e7ddff;
+  --green:#1b4332;--green-light:#2d6a4f;--green-dark:#112d21;
+  --ink:#0f172a;--muted:#64748b;--bg:#f4f9f6;--white:#fff;
+  --line:#e5f0ea;--shadow:0 16px 45px rgba(27,67,50,.14);
+  --glass:rgba(255,255,255,.84);
+  --accent:#ffb703;--danger:#e63946;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Plus Jakarta Sans",sans-serif}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 5% 10%,rgba(183,228,199,.34),transparent 26%),
+    radial-gradient(circle at 95% 40%,rgba(255,183,3,.15),transparent 25%),
+    var(--bg);
+  color:var(--ink);min-height:100vh;padding:16px 12px;
+  transition:background .35s ease,color .35s ease;
+}
+button,a{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.app{max-width:900px;margin:auto}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  position:sticky;top:10px;z-index:20;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;padding:10px 14px;
+  background:var(--glass);backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.75);border-radius:20px;
+  box-shadow:0 8px 30px rgba(27,67,50,.10);margin-bottom:16px;
+}
+.brand{
+  display:flex;align-items:center;gap:9px;font-weight:800;
+  color:var(--green);font-size:12px;background:transparent;border:0;
+}
+.brand-mark{
+  width:34px;height:34px;border-radius:11px;
+  background:linear-gradient(135deg,var(--baby),var(--yellow));
+  display:grid;place-items:center;position:relative;overflow:hidden;
+  box-shadow:0 5px 16px rgba(27,67,50,.12);font-size:16px;
+}
+.brand-mark:after{
+  content:"";position:absolute;inset:-30%;
+  background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.75),transparent 65%);
+  transform:translateX(-100%) rotate(15deg);animation:shine 4s ease-in-out infinite;
+}
+@keyframes shine{55%,100%{transform:translateX(100%) rotate(15deg)}}
+.navlinks{display:flex;gap:5px;overflow:auto;scrollbar-width:none}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks button{
+  border:0;background:transparent;padding:8px 10px;border-radius:10px;
+  color:var(--muted);font-size:10px;font-weight:800;white-space:nowrap;
+  transition:.22s ease;position:relative;
+}
+.navlinks button:hover,.navlinks button.active{background:#e8f5ee;color:var(--green)}
+.navlinks button.active:after{
+  content:"";position:absolute;left:20%;right:20%;bottom:3px;
+  height:2px;border-radius:99px;background:currentColor;
+}
+
+/* ===== VIEW ===== */
+.view{display:none}.view.active{display:block;animation:pageIn .45s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;overflow:hidden;border-radius:30px;
+  padding:60px 36px;
+  background:linear-gradient(135deg,var(--green),var(--green-light));
+  box-shadow:var(--shadow);border:2px solid rgba(255,255,255,.85);
+  color:#fff;
+}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.35}
+.hero:before{width:220px;height:220px;right:-65px;top:-85px;background:var(--yellow)}
+.hero:after{width:180px;height:180px;left:-80px;bottom:-85px;background:var(--baby)}
+.hero-content{position:relative;z-index:1;max-width:690px}
+.eyebrow{
+  display:inline-flex;padding:7px 12px;border-radius:999px;
+  background:rgba(255,255,255,.15);color:var(--yellow);font-size:9px;
+  font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+  margin-bottom:15px;backdrop-filter:blur(8px);
+  border:1px solid rgba(255,183,3,.3);
+}
+.hero h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(2rem,6vw,3.4rem);line-height:1.05;
+  color:#fff;letter-spacing:-1.5px;margin-bottom:12px;
+}
+.hero h1 .accent{
+  background:linear-gradient(135deg,#ffb703,#ffd166);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p{font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.85);max-width:620px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.btn{
+  border:0;border-radius:13px;padding:12px 18px;font-size:10.5px;
+  font-weight:800;transition:.25s ease;display:inline-flex;align-items:center;gap:6px;
+}
+.btn-primary{background:var(--yellow);color:var(--green);box-shadow:0 8px 18px rgba(255,183,3,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,183,3,.4)}
+.btn-soft{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px)}
+.btn-soft:hover{transform:translateY(-3px);background:rgba(255,255,255,.25)}
+.hero-stats{display:flex;gap:18px;margin-top:24px;flex-wrap:wrap}
+.hero-stats span{font-size:9px;color:rgba(255,255,255,.75);font-weight:700}
+.hero-stats b{font-size:15px;color:var(--yellow);margin-right:4px}
+
+.hero-orbit{
+  position:absolute;right:7%;bottom:18%;width:125px;height:125px;
+  border:1px solid rgba(255,255,255,.2);border-radius:50%;
+  animation:orbit 9s linear infinite;z-index:0;
+}
+.hero-orbit:before,.hero-orbit:after{
+  content:"";position:absolute;width:13px;height:13px;border-radius:50%;
+  background:var(--yellow);box-shadow:0 4px 12px rgba(0,0,0,.3);
+}
+.hero-orbit:before{top:6px;left:22px}
+.hero-orbit:after{right:5px;bottom:28px;background:#fff}
+@keyframes orbit{to{transform:rotate(360deg)}}
+
+/* ===== SECTION TITLE ===== */
+.section-title{margin:27px 4px 12px;position:relative}
+.kicker{font-size:9px;color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:4px}
+.section-title h2{
+  font-family:"Playfair Display",serif;font-size:22px;
+  letter-spacing:-.5px;color:var(--green);
+}
+.section-title p{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+.section-title:after{
+  content:"";display:block;width:42px;height:3px;border-radius:99px;
+  background:linear-gradient(90deg,var(--green),var(--yellow));margin-top:10px;
+}
+
+/* ===== QUICK GRID ===== */
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}
+.quick-card{
+  border:1px solid var(--line);border-radius:18px;padding:15px;
+  text-align:left;background:#fff;cursor:pointer;transition:.25s;
+  box-shadow:0 6px 20px rgba(27,67,50,.05);
+}
+.quick-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.quick-card span{
+  display:grid;place-items:center;width:36px;height:36px;
+  border-radius:11px;font-size:18px;margin-bottom:10px;
+}
+.quick-card b{display:block;color:var(--green);font-size:11px}
+.quick-card small{display:block;color:var(--muted);font-size:8.5px;line-height:1.45;margin-top:4px}
+.quick-card.green span{background:var(--baby)}
+.quick-card.yellow span{background:#ffe8b3}
+.quick-card.mint span{background:var(--mint)}
+.quick-card.cream span{background:#fff3c4}
+
+/* ===== ROADMAP ===== */
+.roadmap{
+  display:flex;align-items:stretch;gap:8px;background:#fff;
+  border:1px solid var(--line);border-radius:22px;padding:18px;
+  box-shadow:0 7px 25px rgba(27,67,50,.05);
+}
+.road-step{flex:1;padding:10px}
+.road-step span{
+  display:grid;place-items:center;width:29px;height:29px;border-radius:50%;
+  background:#e8f5ee;color:var(--green);font-size:8px;font-weight:800;
+  margin-bottom:8px;
+}
+.road-step b{display:block;color:var(--green);font-size:11px}
+.road-step small{display:block;color:var(--muted);font-size:8.5px;line-height:1.5;margin-top:4px}
+.road-line{width:28px;height:1px;background:#d9e5f2;margin-top:24px}
+
+/* ===== PROKER CARDS ===== */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.proker-card{
+  position:relative;overflow:hidden;background:#fff;
+  border:1px solid var(--line);border-radius:22px;padding:20px;
+  box-shadow:0 7px 25px rgba(27,67,50,.06);transition:.28s;
+  cursor:pointer;min-height:230px;
+}
+.proker-card:hover{
+  transform:translateY(-7px) scale(1.008);
+  box-shadow:var(--shadow);border-color:rgba(27,67,50,.14);
+}
+.proker-card .blob{position:absolute;width:105px;height:105px;border-radius:50%;right:-45px;top:-48px;opacity:.75}
+.green-card .blob{background:var(--baby)}
+.yellow-card .blob{background:#ffe8b3}
+.mint-card .blob{background:var(--mint)}
+.cream-card .blob{background:#fff3c4}
+.card-top{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.icon{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;font-size:20px}
+.green-card .icon{background:var(--baby)}
+.yellow-card .icon{background:#ffe8b3}
+.mint-card .icon{background:var(--mint)}
+.cream-card .icon{background:#fff3c4}
+.code{font-size:9px;font-weight:800;color:var(--green);background:#f0f8f4;border-radius:999px;padding:6px 9px}
+.proker-card h3{font-size:17px;color:var(--green);margin-top:14px;font-weight:800}
+.subtitle{font-size:9.5px;font-weight:800;color:#64748b;margin:3px 0 9px}
+.proker-card p{font-size:10.5px;line-height:1.65;color:#475569}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.tag{font-size:8.5px;font-weight:800;padding:6px 8px;border-radius:9px;background:#f8fafc;border:1px solid var(--line);color:#475569}
+.card-link{display:inline-flex;align-items:center;gap:5px;color:var(--green);font-size:9.5px;font-weight:800;margin-top:4px}
+.proker-card:after{
+  content:"→";position:absolute;right:18px;bottom:16px;
+  width:27px;height:27px;border-radius:50%;display:grid;place-items:center;
+  background:#f0f8f4;color:var(--green);font-weight:800;font-size:13px;
+  transition:.25s ease;
+}
+.proker-card:hover:after{transform:translateX(4px);background:var(--green);color:#fff}
+
+/* ===== INFO & MINI ===== */
+.info{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 7px 25px rgba(27,67,50,.05)}
+.info p{font-size:11px;line-height:1.75;color:#475569}
+.info strong{color:var(--green)}
+.info h3{font-size:13px;color:var(--green);margin-bottom:7px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.mini{
+  padding:16px;border-radius:17px;background:#f0f8f4;
+  border:1px solid var(--line);transition:.25s ease;
+}
+.mini:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.mini h3{font-size:12px;color:var(--green);margin-bottom:6px}
+.mini p{font-size:10px;line-height:1.6;color:var(--muted)}
+.list{display:grid;gap:8px;margin-top:10px}
+.list li{list-style:none;font-size:10.5px;line-height:1.5;color:#475569;padding-left:18px;position:relative}
+.list li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+
+/* ===== DETAIL ===== */
+.detail-hero{
+  position:relative;overflow:hidden;border-radius:28px;padding:28px;
+  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.detail-hero .accent{position:absolute;width:170px;height:170px;border-radius:50%;right:-65px;top:-80px}
+.detail-hero.green .accent{background:var(--baby)}
+.detail-hero.yellow .accent{background:#ffe8b3}
+.detail-hero.mint .accent{background:var(--mint)}
+.detail-hero.cream .accent{background:#fff3c4}
+.back{
+  border:0;background:#f0f8f4;color:var(--green);border-radius:10px;
+  padding:8px 10px;font-size:9px;font-weight:800;margin-bottom:20px;
+}
+.detail-content{position:relative;z-index:1}
+.detail-icon{
+  width:54px;height:54px;border-radius:16px;display:grid;
+  place-items:center;font-size:25px;margin-bottom:13px;
+}
+.detail-hero.green .detail-icon{background:var(--baby)}
+.detail-hero.yellow .detail-icon{background:#ffe8b3}
+.detail-hero.mint .detail-icon{background:var(--mint)}
+.detail-hero.cream .detail-icon{background:#fff3c4}
+.detail-content h1{
+  font-family:"Playfair Display",serif;font-size:30px;
+  color:var(--green);letter-spacing:-1px;
+}
+.detail-content .lead{font-size:11px;line-height:1.7;color:#475569;max-width:690px;margin-top:7px}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+.badge{
+  font-size:8.5px;font-weight:800;padding:7px 9px;border-radius:9px;
+  background:#f0f8f4;color:#475569;border:1px solid var(--line);
+}
+
+/* ===== DETAIL GRID & PANEL ===== */
+.detail-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:13px;margin-top:13px}
+.panel{
+  background:#fff;border:1px solid var(--line);border-radius:20px;
+  padding:19px;transition:.25s ease;
+}
+.panel:hover{box-shadow:0 12px 32px rgba(27,67,50,.07)}
+.panel h2{font-size:14px;color:var(--green);margin-bottom:9px}
+.panel h3{font-size:11px;color:var(--green);margin:15px 0 7px}
+.panel p{font-size:10.5px;line-height:1.7;color:#475569}
+
+/* ===== GOAL LIST ===== */
+.goal-list{display:grid;gap:8px}
+.goal{
+  display:flex;gap:9px;align-items:flex-start;padding:10px;
+  border-radius:12px;background:#f0f8f4;transition:.2s ease;
+}
+.goal:hover{transform:translateX(3px);background:#e8f5ee}
+.goal b{font-size:10px;color:var(--green)}
+.goal span{font-size:9.5px;line-height:1.45;color:var(--muted);display:block;margin-top:2px}
+
+/* ===== NUMBER LIST ===== */
+.number-list{display:grid;gap:9px}
+.number-item{display:flex;gap:9px}
+.number{
+  width:24px;height:24px;border-radius:8px;background:#e8f5ee;
+  color:var(--green);display:grid;place-items:center;font-size:9px;
+  font-weight:800;flex:none;
+}
+.number-item div:last-child{font-size:10px;line-height:1.55;color:#475569}
+.number-item strong{display:block;color:var(--ink);font-size:10.5px}
+
+/* ===== TIMELINE ===== */
+.timeline{display:grid;gap:8px}
+.timeline-item{
+  display:flex;gap:10px;padding:10px;border-radius:12px;
+  background:#f8fafc;transition:.2s ease;
+}
+.timeline-item:hover{transform:translateX(3px);background:#f0f8f4}
+.timeline-item b{font-size:10px;color:var(--green);min-width:72px}
+.timeline-item span{font-size:9.5px;color:#64748b;line-height:1.45}
+
+/* ===== STATS GRID ===== */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:13px}
+.stat-box{
+  background:#fff;border:1px solid var(--line);border-radius:18px;
+  padding:18px;transition:.25s ease;
+}
+.stat-box:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.stat-box b{display:block;font-size:25px;color:var(--green);font-weight:800}
+.stat-box span{font-size:8.5px;color:var(--muted);line-height:1.4}
+
+/* ===== LEADERBOARD TABLE ===== */
+.table-container{
+  width:100%;background:#fff;border-radius:22px;
+  padding:20px;box-shadow:0 7px 25px rgba(27,67,50,.05);
+  border:1px solid var(--line);overflow-x:auto;margin-top:13px;
+}
+table{width:100%;border-collapse:collapse;text-align:left}
+th{
+  padding:14px 18px;font-weight:800;color:var(--green);
+  border-bottom:2px solid var(--line);font-size:10px;
+  text-transform:uppercase;letter-spacing:1px;
+}
+td{padding:16px 18px;border-bottom:1px solid var(--line);font-size:12px;color:#475569;transition:.3s}
+tr:last-child td{border-bottom:none}
+tr{cursor:pointer}
+tr:hover td{background:#f0f8f4}
+tr.highlighted-row td{
+  background:rgba(255,183,3,.15) !important;
+  border-bottom-color:rgba(255,183,3,.4);
+}
+.rank-badge{
+  width:32px;height:32px;border-radius:50%;display:inline-flex;
+  justify-content:center;align-items:center;font-weight:800;font-size:12px;
+}
+.rank-1{background:#fff9db;color:#856404;border:1px solid #ffeeba}
+.rank-2{background:#e2e3e5;color:#383d41}
+.rank-3{background:#f8d7da;color:#721c24}
+.score-style{font-weight:800;color:var(--green);font-size:13px}
+
+/* ===== COUNTDOWN ===== */
+.countdown-container{
+  background:linear-gradient(135deg,rgba(255,183,3,.12),rgba(255,183,3,.05));
+  border:1px solid rgba(255,183,3,.3);padding:20px;
+  border-radius:20px;margin-top:15px;text-align:center;
+}
+.countdown-container p{
+  font-size:10px;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--green);font-weight:800;
+}
+.countdown-timer{
+  font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;
+  color:var(--accent);font-family:monospace;margin-top:6px;
+}
+
+/* ===== CTA ===== */
+.cta{
+  margin-top:13px;border-radius:20px;padding:20px;
+  background:linear-gradient(135deg,var(--green),var(--green-light));
+  color:#fff;position:relative;overflow:hidden;
+}
+.cta:after{
+  content:"🍃";position:absolute;right:26px;top:10px;
+  font-size:75px;opacity:.08;transform:rotate(15deg);
+}
+.cta h2{font-size:16px;margin-bottom:5px}
+.cta p{font-size:10px;line-height:1.6;color:rgba(255,255,255,.85);margin-bottom:12px}
+.cta .btn{background:#fff;color:var(--green)}
+
+/* ===== SEARCH ===== */
+.search-fab{
+  position:fixed;right:18px;bottom:78px;z-index:1000;border:0;
+  width:43px;height:43px;border-radius:50%;background:var(--green);
+  color:#fff;box-shadow:0 10px 25px rgba(27,67,50,.25);font-size:17px;
+  transition:.25s ease;
+}
+.search-fab:hover{transform:scale(1.08) rotate(-5deg)}
+.search-modal{
+  position:fixed;inset:0;background:rgba(15,23,42,.5);
+  backdrop-filter:blur(7px);z-index:9999;display:none;
+  align-items:flex-start;justify-content:center;padding:80px 15px;
+}
+.search-modal.active{display:flex;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.search-box{
+  width:min(650px,100%);background:#fff;border-radius:22px;
+  padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.2);
+  animation:popIn .35s ease;
+}
+@keyframes popIn{from{opacity:0;transform:translateY(15px) scale(.97)}to{opacity:1;transform:none}}
+.search-input{
+  width:100%;border:1px solid var(--line);border-radius:13px;
+  padding:13px 14px;outline:0;font-size:12px;
+}
+.search-input:focus{border-color:var(--green-light);box-shadow:0 0 0 4px rgba(45,106,79,.08)}
+.search-results{display:grid;gap:7px;margin-top:10px;max-height:55vh;overflow:auto}
+.search-result{
+  border:1px solid var(--line);border-radius:12px;padding:11px;
+  text-align:left;background:#f0f8f4;cursor:pointer;transition:.2s;
+}
+.search-result:hover{background:#e8f5ee;transform:translateX(4px)}
+.search-result b{display:block;color:var(--green);font-size:10px}
+.search-result span{display:block;color:var(--muted);font-size:8.5px;margin-top:3px}
+
+/* ===== FLOATING MUSIC ===== */
+.floating-music{
+  position:fixed;right:18px;bottom:18px;z-index:9999;
+  display:flex;align-items:center;gap:8px;padding:8px;
+  border:1px solid rgba(255,255,255,.75);border-radius:999px;
+  background:rgba(255,255,255,.88);box-shadow:0 10px 30px rgba(80,60,100,.18);
+  backdrop-filter:blur(12px);
+}
+.music-btn{
+  width:40px;height:40px;border:0;border-radius:50%;cursor:pointer;
+  font-size:18px;background:#e8f5ee;color:var(--green);transition:.2s ease;
+}
+.music-btn:hover{transform:scale(1.06)}
+.music-label{
+  font-size:10px;font-weight:700;color:var(--green);
+  padding:0 8px 0 2px;white-space:nowrap;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.scroll-reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.scroll-reveal.visible{opacity:1;transform:none}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:30px 10px 20px;text-align:center;
+  color:#94a3b8;font-size:9px;line-height:1.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:760px){
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .roadmap{display:grid;grid-template-columns:1fr}
+  .road-line{width:1px;height:18px;margin:0 0 0 24px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .topbar{flex-wrap:wrap}
+  .navlinks{order:3;width:100%}
+}
+@media(max-width:680px){
+  .grid,.two,.detail-grid{grid-template-columns:1fr}
+  .hero{padding:38px 22px}
+  .hero h1{font-size:2.15rem}
+  .detail-content h1{font-size:26px}
+}
+@media(max-width:430px){
+  body{padding:9px}.topbar{top:6px}.navlinks button{padding:8px 8px}
+  .grid{gap:10px}.proker-card{padding:17px}.panel{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" src="musik.mp3" loop preload="auto"></audio>
+<div class="app">
+
+<header class="topbar">
+  <button class="brand" onclick="showView('home')" aria-label="Kembali ke beranda">
+    <span class="brand-mark">🍃</span> CLEAN & CARE CLASS · SMAN 1 BATUJAYA
+  </button>
+  <nav class="navlinks" aria-label="Navigasi utama">
+    <button data-view="home" class="active" onclick="showView('home')">Beranda</button>
+    <button data-view="program" onclick="showView('program')">Program</button>
+    <button data-view="mekanisme" onclick="showView('mekanisme')">Mekanisme</button>
+    <button data-view="board" onclick="showView('board')">Papan Skor</button>
+    <button data-view="spotlight" onclick="showView('spotlight')">Spotlight</button>
+    <button data-view="reward" onclick="showView('reward')">Reward</button>
+    <button data-view="konsekuensi" onclick="showView('konsekuensi')">Konsekuensi</button>
+  </nav>
+</header>
+
+<!-- ================= HOME ================= -->
+<section id="home" class="view active">
+  <div class="hero">
+    <div class="hero-orbit" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="eyebrow">PROGRAM KERJA DUTA LINGKUNGAN · 2026</span>
+      <h1>Clean & Care Class,<br><span class="accent">Untuk Kelas yang Lebih Hidup.</span></h1>
+      <p>Wadah kolaborasi membangun budaya bersih, sehat, dan nyaman yang berkelanjutan di setiap sudut kelas SMAN 1 Batujaya. Angkatan 2026.</p>
+      <div class="hero-actions">
+        <button class="btn btn-soft" onclick="showView('program')">Tentang Program</button>
+        <button class="btn btn-soft" onclick="showView('mekanisme')">Cara Penilaian</button>
+        <button class="btn btn-primary" onclick="showView('board')">Lihat Papan Skor</button>
+      </div>
+      <div class="hero-stats">
+        <span><b>03</b> Tim Duta</span>
+        <span><b>02x</b> Sidak/Minggu</span>
+        <span><b>∞</b> Kebersihan</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quick-grid scroll-reveal">
+    <button class="quick-card green" onclick="showView('program')"><span>🍃</span><b>Tentang Program</b><small>Kenali Clean & Care</small></button>
+    <button class="quick-card yellow" onclick="showView('mekanisme')"><span>📋</span><b>Mekanisme</b><small>Cara penilaian</small></button>
+    <button class="quick-card mint" onclick="showView('board')"><span>📊</span><b>Papan Skor</b><small>Live score kelas</small></button>
+    <button class="quick-card cream" onclick="showView('spotlight')"><span>👑</span><b>Spotlight</b><small>Kelas terbersih</small></button>
+  </div>
+
+  <div class="section-title" id="roadmap">
+    <div class="kicker">Alur Program</div>
+    <h2>Dari kebiasaan menuju budaya.</h2>
+    <p>Setiap langkah dimulai dari kesadaran kecil, lalu tumbuh menjadi kebiasaan bersama.</p>
+  </div>
+  <div class="roadmap scroll-reveal">
+    <div class="road-step"><span>01</span><b>Dokumentasi</b><small>KM upload foto kondisi kelas tiap hari sebelum jam 17.00.</small></div>
+    <div class="road-line"></div>
+    <div class="road-step"><span>02</span><b>Validasi</b><small>Tim Duta sidak acak 2x seminggu untuk cek kondisi riil.</small></div>
+    <div class="road-line"></div>
+    <div class="road-step"><span>03</span><b>Penilaian</b><small>Skor dihitung dari kebersihan, kerapian, dan kreativitas.</small></div>
+    <div class="road-line"></div>
+    <div class="road-step"><span>04</span><b>Apresiasi</b><small>Reward untuk juara, konsekuensi untuk yang tertinggal.</small></div>
+  </div>
+
+  <div class="section-title" id="programs">
+    <div class="kicker">Bagian Program</div>
+    <h2>Kenali setiap bagiannya.</h2>
+    <p>Pilih salah satu untuk membuka penjelasan lengkap.</p>
+  </div>
+
+  <div class="grid scroll-reveal">
+    <article class="proker-card green-card" onclick="showView('mekanisme')">
+      <span class="blob"></span>
+      <div class="card-top"><div class="icon">📋</div><span class="code">01</span></div>
+      <h3>MEKANISME</h3><div class="subtitle">Cara Penilaian</div>
+      <p>Penjelasan detail tentang dokumentasi harian, sidak Tim Duta, dan sistem penilaian yang transparan.</p>
+      <div class="tags"><span class="tag">Dokumentasi</span><span class="tag">Sidak</span><span class="tag">Skor</span></div>
+      <span class="card-link">Lihat halaman Mekanisme →</span>
+    </article>
+
+    <article class="proker-card yellow-card" onclick="showView('board')">
+      <span class="blob"></span>
+      <div class="card-top"><div class="icon">📊</div><span class="code">02</span></div>
+      <h3>PAPAN SKOR</h3><div class="subtitle">Live Score Board</div>
+      <p>Akumulasi skor mingguan seluruh kelas secara transparan. Bersaing sehat demi kenyamanan bersama.</p>
+      <div class="tags"><span class="tag">Leaderboard</span><span class="tag">Live</span><span class="tag">Transparan</span></div>
+      <span class="card-link">Lihat halaman Papan Skor →</span>
+    </article>
+
+    <article class="proker-card mint-card" onclick="showView('spotlight')">
+      <span class="blob"></span>
+      <div class="card-top"><div class="icon">👑</div><span class="code">03</span></div>
+      <h3>SPOTLIGHT</h3><div class="subtitle">Class of the Week</div>
+      <p>Apresiasi khusus untuk kelas dengan dedikasi terbaik dalam menjaga kebersihan minggu ini.</p>
+      <div class="tags"><span class="tag">Apresiasi</span><span class="tag">Galeri</span><span class="tag">Inspirasi</span></div>
+      <span class="card-link">Lihat halaman Spotlight →</span>
+    </article>
+
+    <article class="proker-card cream-card" onclick="showView('reward')">
+      <span class="blob"></span>
+      <div class="card-top"><div class="icon">🏆</div><span class="code">04</span></div>
+      <h3>REWARD & KONSEKUENSI</h3><div class="subtitle">Apresiasi & Tanggung Jawab</div>
+      <p>Hadiah untuk kelas terbaik, dan konsekuensi mendidik untuk kelas yang perlu perbaikan.</p>
+      <div class="tags"><span class="tag">Reward</span><span class="tag">Edukasi</span><span class="tag">Budaya</span></div>
+      <span class="card-link">Lihat halaman Reward →</span>
+    </article>
+  </div>
+
+  <div class="section-title">
+    <div class="kicker">Gambaran Besar</div>
+    <h2>Empat fungsi yang saling melengkapi.</h2>
+  </div>
+  <div class="two scroll-reveal">
+    <div class="mini"><h3>📋 Sistem Penilaian</h3><p>Dokumentasi harian + validasi sidak bikin penilaian transparan dan adil.</p></div>
+    <div class="mini"><h3>📊 Live Score</h3><p>Leaderboard yang bisa dipantau semua kelas — memacu semangat bersaing sehat.</p></div>
+    <div class="mini"><h3>👑 Apresiasi</h3><p>Spotlight mingguan untuk kelas terbersih bikin dedikasi terlihat dan dihargai.</p></div>
+    <div class="mini"><h3>🏆 Reward</h3><p>Hadiah fisik & fasilitas tambahan jadi motivasi nyata buat semua kelas.</p></div>
+  </div>
+</section>
+
+<!-- ================= PROGRAM ================= -->
+<section id="program" class="view">
+  <div class="detail-hero green">
+    <span class="accent"></span>
+    <div class="detail-content">
+      <button class="back" onclick="showView('home')">← Kembali ke Beranda</button>
+      <div class="detail-icon">🍃</div>
+      <h1>TENTANG PROGRAM</h1>
+      <p class="lead">Clean & Care Class adalah program kerja Duta Lingkungan SMAN 1 Batujaya untuk membangun budaya bersih, sehat, dan nyaman yang berkelanjutan.</p>
+      <div class="badges"><span class="badge">Kebersihan</span><span class="badge">Kolaborasi</span><span class="badge">Budaya</span><span class="badge">Berkelanjutan</span></div>
+    </div>
+  </div>
+
+  <div class="detail-grid scroll-reveal">
+    <div class="panel">
+      <h2>📌 Apa itu Clean & Care Class?</h2>
+      <p>Clean & Care Class dirancang untuk menciptakan kompetisi sehat antar kelas demi mendorong kesadaran kolektif dalam menjaga kebersihan. Karena tempat belajar yang bersih akan menghasilkan pikiran yang jernih.</p>
+      <h3>Latar Belakang</h3>
+      <p>Kesadaran menjaga kebersihan kelas seringkali hanya menjadi tanggung jawab petugas piket. Program ini hadir untuk mengubah paradigma tersebut menjadi budaya bersama.</p>
+    </div>
+    <div class="panel">
+      <h2>🎯 Tujuan</h2>
+      <div class="goal-list">
+        <div class="goal"><span>01</span><div><b>Membangun kesadaran kolektif</b><span>Kebersihan jadi tanggung jawab semua warga kelas.</span></div></div>
+        <div class="goal"><span>02</span><div><b>Menciptakan kompetisi sehat</b><span>Antar kelas saling memacu dalam kebaikan.</span></div></div>
+        <div class="goal"><span>03</span><div><b>Menciptakan ruang nyaman</b><span>Lingkungan belajar yang bersih & sehat.</span></div></div>
+        <div class="goal"><span>04</span><div><b>Membentuk karakter</b><span>Disiplin & tanggung jawab jadi kebiasaan.</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:13px"><h2>📈 Hasil yang Diharapkan</h2><p>Terbangunnya budaya kebersihan yang berkelanjutan di seluruh kelas SMAN 1 Batujaya, dengan kesadaran bahwa kelas yang bersih adalah cerminan dari penghuni yang peduli.</p></div>
+</section>
+
+<!-- ================= MEKANISME ================= -->
+<section id="mekanisme" class="view">
+  <div class="detail-hero yellow">
+    <span class="accent"></span>
+    <div class="detail-content">
+      <button class="back" onclick="showView('home')">← Kembali ke Beranda</button>
+      <div class="detail-icon">📋</div>
+      <h1>MEKANISME PENILAIAN</h1>
+      <p class="lead">Sistem penilaian dirancang transparan dan adil melalui dokumentasi harian dan validasi sidak oleh Tim Duta Lingkungan.</p>
+      <div class="badges"><span class="badge">Dokumentasi</span><span class="badge">Sidak</span><span class="badge">Transparan</span><span class="badge">Real-time</span></div>
+    </div>
+  </div>
+
+  <div class="detail-grid scroll-reveal">
+    <div class="panel">
+      <h2>📸 Dokumentasi Harian</h2>
+      <p>KM atau perwakilan tim kebersihan wajib mengunggah foto kondisi kelas terkini ke link Drive yang disediakan sebelum pukul 17.00 WIB setiap hari.</p>
+      <h3>Ketentuan Upload</h3>
+      <ul class="list"><li>Foto kondisi terkini kelas</li><li>Minimal 3 sudut berbeda</li><li>Upload sebelum 17.00 WIB</li><li>File tersimpan di Drive kelas masing-masing</li></ul>
+    </div>
+    <div class="panel">
+      <h2>🕵️ Sidak Tim Duta</h2>
+      <p>Validasi lapangan dilakukan langsung oleh Tim Duta sebanyak 2 kali dalam seminggu secara acak demi menjaga transparansi penilaian.</p>
+      <h3>Aspek Penilaian</h3>
+      <div class="goal-list">
+        <div class="goal"><span>01</span><div><b>Kebersihan</b><span>Lantai, meja, dinding, jendela</span></div></div>
+        <div class="goal"><span>02</span><div><b>Kerapian</b><span>Penataan barang & tempat duduk</span></div></div>
+        <div class="goal"><span>03</span><div><b>Kreativitas</b><span>Dekorasi & sirkulasi udara</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-grid scroll-reveal">
+    <div class="panel">
+      <h2>⏰ Countdown Upload</h2>
+      <div class="countdown-container">
+        <p>⏳ Sisa Waktu Upload Dokumentasi Hari Ini</p>
+        <div id="daily-countdown" class="countdown-timer">00:00:00</div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>📊 Sistem Skor</h2>
+      <div class="number-list">
+        <div class="number-item"><div class="number">1</div><div><strong>Upload tepat waktu</strong>+10 poin per hari</div></div>
+        <div class="number-item"><div class="number">2</div><div><strong>Lolos sidak</strong>+50 poin per validasi</div></div>
+        <div class="number-item"><div class="number">3</div><div><strong>Kreativitas ekstra</strong>+20 poin bonus</div></div>
+        <div class="number-item"><div class="number">4</div><div><strong>Konsisten seminggu</strong>+30 poin bonus</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOARD ================= -->
+<section id="board" class="view">
+  <div class="detail-hero mint">
+    <span class="accent"></span>
+    <div class="detail-content">
+      <button class="back" onclick="showView('home')">← Kembali ke Beranda</button>
+      <div class="detail-icon">📊</div>
+      <h1>PAPAN SKOR</h1>
+      <p class="lead">Akumulasi skor mingguan seluruh kelas secara transparan. Bersaing secara sehat demi kenyamanan ruang belajar bersama.</p>
+      <div class="badges"><span class="badge">Leaderboard</span><span class="badge">Live</span><span class="badge">Transparan</span></div>
+    </div>
+  </div>
+
+  <div class="detail-grid scroll-reveal">
+    <div class="panel" style="grid-column:1/-1">
+      <h2>📊 Statistik Minggu Ini</h2>
+      <div class="stats-grid">
+        <div class="stat-box"><b>03</b><span>Kelas Terdata</span></div>
+        <div class="stat-box"><b>420</b><span>Total Poin</span></div>
+        <div class="stat-box"><b>02</b><span>Sidak Dilakukan</span></div>
+        <div class="stat-box"><b>98%</b><span>Upload Tepat Waktu</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel scroll-reveal" style="margin-top:13px">
+    <h2>🏆 Leaderboard Mingguan</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:15%">Peringkat</th>
+            <th style="width:55%">Nama Kelas</th>
+            <th style="width:30%">Total Skor</th>
+          </tr>
+        </thead>
+        <tbody id="score-table-body">
+          <tr onclick="highlightRow(this)">
+            <td><span class="rank-badge rank-1">1</span></td>
+            <td><strong>X.12</strong> 🥇</td>
+            <td><span class="score-style">150 Poin</span></td>
+          </tr>
+          <tr onclick="highlightRow(this)">
+            <td><span class="rank-badge rank-2">2</span></td>
+            <td><strong>XI.A1</strong> 🥈</td>
+            <td><span class="score-style">150 Poin</span></td>
+          </tr>
+          <tr onclick="highlightRow(this)">
+            <td><span class="rank-badge rank-3">3</span></td>
+            <td><strong>X.1</strong> 🥉</td>
+            <td><span class="score-style">120 Poin</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:15px;text-align:center">
+      <button class="btn btn-primary" onclick="copyScores()" id="copy-btn">📋 Salin Info Skor</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPOTLIGHT ================= -->
+<section id="spotlight" class="view">
+  <div class="detail-hero cream">
+    <span class="accent"></span>
+    <div class="detail-content">
+      <button class="back" onclick="showView('home')">← Kembali ke Beranda</button>
+      <div class="detail-icon">👑</div>
+      <h1>SPOTLIGHT</h1>
+      <p class="lead">Apresiasi khusus untuk kelas dengan dedikasi terbaik dalam menjaga kebersihan minggu ini.</p>
+      <div class="badges"><span class="badge">Apresiasi</span><span class="badge">Galeri</span><span class="badge">Inspirasi</span></div>
+    </div>
+  </div>
+
+  <div class="panel scroll-reveal" style="margin-top:13px;text-align:center">
+    <img src="foto.jpg" alt="Apresiasi Kelas Terbersih"
+         style="width:100%;max-width:100%;border-radius:18px;display:block;margin:auto;box-shadow:0 12px 30px rgba(0,0,0,.12);">
+    <h3 style="margin-top:20px;font-size:18px;color:var(--green)">Apresiasi Kelas Terbersih Minggu Ini</h3>
+    <p style="margin-top:10px;font-size:11px;line-height:1.7;color:#475569">
+      Selamat atas dedikasi dan konsistensinya menjaga ruangan tetap asri. Jadikan ruang kelas kalian inspirasi kenyamanan bagi warga SMAN 1 Batujaya! 🙌🏻✨
+    </p>
+
+    <div style="margin-top:22px">
+      <div class="kicker" style="margin-bottom:12px">✨ Setiap Sudut Kelas Terpilih</div>
+      <div class="stats-grid">
+        <div class="stat-box" style="padding:0;overflow:hidden">
+          <img src="foto1.jpg" alt="Sudut 1" style="width:100%;height:120px;object-fit:cover;display:block">
+        </div>
+        <div class="stat-box" style="padding:0;overflow:hidden">
+          <img src="foto2.jpg" alt="Sudut 2" style="width:100%;height:120px;object-fit:cover;display:block">
+        </div>
+        <div class="stat-box" style="padding:0;overflow:hidden">
+          <img src="foto3.jpg" alt="Sudut 3" style="width:100%;height:120px;object-fit:cover;display:block">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REWARD ================= -->
+<section id="reward" class="view">
+  <div class="detail-hero green">
+    <span class="accent"></span>
+    <div class="detail-content">
+      <button class="back" onclick="showView('home')">← Kembali ke Beranda</button>
+      <div class="detail-icon">🏆</div>
+      <h1>REWARD</h1>
+      <p class="lead">Hadiah fisik eksklusif & fasilitas tambahan sebagai apresiasi untuk kelas yang konsisten menjaga kebersihan.</p>
+      <div class="badges"><span class="badge">Hadiah</span><span class="badge">Fasilitas</span><span class="badge">Spotlight</span></div>
+    </div>
+  </div>
+
+  <div class="grid scroll-reveal" style="margin-top:13px">
+    <div class="panel" style="border:2px solid var(--green)">
+      <h2>🎁 Reward Spesial</h2>
+      <p style="font-size:11px;line-height:1.7;color:#475569">Hadiah fisik eksklusif apresiasi akhir bulan bagi kelas peraih konsistensi skor tertinggi harian.</p>
+    </div>
+    <div class="panel">
+      <h2>🧹 Alat Kebersihan</h2>
+      <p style="font-size:11px;line-height:1.7;color:#475569">Fasilitas perlengkapan sanitasi tambahan guna mendukung kelas juara agar selalu terawat.</p>
+    </div>
+    <div class="panel">
+      <h2>📢 Public Spotlight</h2>
+      <p style="font-size:11px;line-height:1.7;color:#475569">Publikasi profil kekompakan kelas secara berkala di media sekolah sebagai bentuk kebanggaan.</p>
+    </div>
+    <div class="panel">
+      <h2>⭐ Piagam Penghargaan</h2>
+      <p style="font-size:11px;line-height:1.7;color:#475569">Sertifikat resmi dari Tim Duta Lingkungan sebagai bentuk penghargaan tertulis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONSEKUENSI ================= -->
+<section id="konsekuensi" class="view">
+  <div class="detail-hero yellow">
+    <span class="accent"></span>
+    <div class="detail-content">
+      <button class="back" onclick="showView('home')">← Kembali ke Beranda</button>
+      <div class="detail-icon">📋</div>
+      <h1>KONSEKUENSI</h1>
+      <p class="lead">Konsekuensi mendidik untuk kelas yang perlu perbaikan — bukan hukuman, tapi tanggung jawab bersama.</p>
+      <div class="badges"><span class="badge">Edukasi</span><span class="badge">Tanggung Jawab</span><span class="badge">Kebersamaan</span></div>
+    </div>
+  </div>
+
+  <div class="grid scroll-reveal" style="margin-top:13px">
+    <div class="panel" style="border:1px solid rgba(230,57,70,.15)">
+      <h2 style="color:var(--danger)">🗑️ Piket Kerja Bakti</h2>
+      <p style="font-size:11px;line-height:1.7;color:#475569">Agenda bersama membersihkan serta menata ulang area fasilitas publik sekolah yang kurang terawat dengan pendampingan Tim Duta.</p>
+    </div>
+    <div class="panel" style="border:1px solid rgba(230,57,70,.15)">
+      <h2 style="color:var(--danger)">🎨 Edukasi Lingkungan</h2>
+      <p style="font-size:11px;line-height:1.7;color:#475569">Membuat kreasi media informasi bertema pelestarian lingkungan hidup kreatif untuk disajikan pada mading utama sekolah.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<button class="search-fab" onclick="openSearch()" aria-label="Cari">⌕</button>
+<div class="search-modal" id="searchModal" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <input class="search-input" id="searchInput" placeholder="Cari mekanisme, papan skor, reward..." autocomplete="off">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<footer>© 2026 · Clean & Care Class — SMAN 1 Batujaya · Dibuat oleh Wakil 1 Duta Sekolah & Tim Duta Lingkungan</footer>
+</div>
+
+<!-- FLOATING MUSIC -->
+<div class="floating-music" aria-label="Kontrol musik">
+  <button class="music-btn" id="musicToggle" type="button" aria-label="Putar musik">🔇</button>
+  <span class="music-label" id="musicLabel">Musik mati</span>
+</div>
+
+<script>
+// ================= VIEW NAV =================
+function showView(id){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  const target=document.getElementById(id);
+  if(target) target.classList.add("active");
+  document.querySelectorAll(".navlinks button").forEach(b=>b.classList.toggle("active",b.dataset.view===id));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// ================= SEARCH =================
+const searchItems=[
+  ["Tentang Program","program","Kenali Clean & Care Class"],
+  ["Mekanisme","mekanisme","Cara penilaian & dokumentasi"],
+  ["Papan Skor","board","Leaderboard mingguan"],
+  ["Spotlight","spotlight","Kelas terbersih minggu ini"],
+  ["Reward","reward","Hadiah untuk kelas juara"],
+  ["Konsekuensi","konsekuensi","Tanggung jawab kelas"],
+  ["Dokumentasi Harian","mekanisme","Upload foto sebelum 17.00"],
+  ["Sidak Tim Duta","mekanisme","Validasi lapangan 2x seminggu"],
+  ["Countdown Upload","mekanisme","Sisa waktu upload hari ini"],
+  ["Skor","board","Akumulasi poin kelas"],
+  ["Piagam","reward","Penghargaan tertulis"],
+  ["Alat Kebersihan","reward","Fasilitas sanitasi tambahan"],
+  ["Piket Kerja Bakti","konsekuensi","Agenda membersihkan fasilitas"],
+  ["Edukasi Lingkungan","konsekuensi","Kreasi media informasi"],
+];
+
+function openSearch(){
+  document.getElementById("searchModal").classList.add("active");
+  const input=document.getElementById("searchInput");
+  input.value="";renderSearch("");
+  setTimeout(()=>input.focus(),50);
+}
+function closeSearch(){document.getElementById("searchModal").classList.remove("active");}
+function renderSearch(q){
+  q=q.toLowerCase().trim();
+  const results=searchItems.filter(x=>(x[0]+" "+x[2]).toLowerCase().includes(q));
+  document.getElementById("searchResults").innerHTML=results.map(x=>
+    `<button class="search-result" onclick="closeSearch();showView('${x[1]}')"><b>${x[0]}</b><span>${x[2]}</span></button>`
+  ).join("") || `<div style="padding:15px;font-size:10px;color:#64748b">Tidak ditemukan.</div>`;
+}
+document.getElementById("searchInput")?.addEventListener("input",e=>renderSearch(e.target.value));
+
+// ================= SCROLL REVEAL =================
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add("visible");revealObserver.unobserve(entry.target);}
+  });
+},{threshold:.12});
+document.querySelectorAll(".scroll-reveal").forEach(el=>revealObserver.observe(el));
+
+// ================= COUNTDOWN =================
+function updateCountdown(){
+  const now=new Date();
+  const target=new Date();
+  target.setHours(17,0,0,0);
+  let diff=target-now;
+  if(diff<0){target.setDate(target.getDate()+1);diff=target-now;}
+  const h=Math.floor(diff/(1000*60*60));
+  const m=Math.floor((diff%(1000*60*60))/(1000*60));
+  const s=Math.floor((diff%(1000*60))/1000);
+  const el=document.getElementById("daily-countdown");
+  if(!el) return;
+  if(now.getHours()>=17){
+    el.innerHTML="WAKTU UPLOAD HABIS ❌";
+    el.style.color="var(--danger)";
+  } else {
+    el.innerHTML=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    el.style.color="var(--accent)";
+  }
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+// ================= HIGHLIGHT ROW =================
+function highlightRow(row){
+  document.querySelectorAll('#score-table-body tr').forEach(tr=>{
+    if(tr!==row) tr.classList.remove('highlighted-row');
+  });
+  row.classList.toggle('highlighted-row');
+}
+
+// ================= COPY SCORES =================
+function copyScores(){
+  const url=window.location.href;
+  const text=`*Info Clean & Care Class SMAN 1 Batujaya* 🍃\n\nPeringkat 1 saat ini diraih oleh *X.12* dengan capaian *150 Poin*!\n\nYuk, pantau terus update akumulasi skor kelasmu secara langsung di: ${url}`;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.getElementById('copy-btn');
+    const original=btn.innerHTML;
+    btn.innerHTML='✅ Berhasil Tersalin!';
+    setTimeout(()=>{btn.innerHTML=original;},2500);
+  }).catch(()=>alert('Gagal copy. Silakan copy manual.'));
+}
+
+// ================= MUSIC =================
+const music=document.getElementById('bgMusic');
+const musicToggle=document.getElementById('musicToggle');
+const musicLabel=document.getElementById('musicLabel');
+
+function updateMusicButton(){
+  if(!music) return;
+  if(music.paused){
+    musicToggle.textContent='🔇';
+    musicLabel.textContent='Musik mati';
+  } else {
+    musicToggle.textContent='🔊';
+    musicLabel.textContent='Musik hidup';
+  }
+}
+
+musicToggle.addEventListener('click',async()=>{
+  if(music.paused){
+    try{music.volume=0.65;await music.play();}catch(e){console.log('Gagal play:',e);}
+  } else {
+    music.pause();
+  }
+  updateMusicButton();
+});
+music.addEventListener('play',updateMusicButton);
+music.addEventListener('pause',updateMusicButton);
+updateMusicButton();
+</script>
+
+</body>
+</html>
